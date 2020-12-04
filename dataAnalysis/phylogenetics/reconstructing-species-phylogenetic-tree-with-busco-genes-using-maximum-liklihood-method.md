@@ -82,16 +82,21 @@ done >> busco.cmds
 ```
 
 
-Next, generate multiple PBS scripts to run them on a cluster. For Condo the  `makeSLURMs.py` script can be used (script can be obtained from our repo [here](https://github.com/ISUgenomics/common_scripts/blob/master/makeSLURMs.py).
+Next, generate multiple PBS scripts to run them on a cluster. For Condo the  `makeSLURMs.py` script can be used (script can be obtained from our repo [here](https://github.com/ISUgenomics/common_scripts/blob/master/makeSLURMs.py). 
+For LSF users you run parallel jobs directly using `asub` tool can obtained form here [here](https://github.com/lh3/asub.git).
 
 After this step, you should have 21 BUSCO submission scripts. Submit them to the cluster using for loop:
+PBS
 
 ```
 for file in busco_?.sub; do
 sbatch $file;
 done
 ```
-
+LSF
+```
+asub busco.cmds
+```
 ### Optional step: Get the BUSCO plot for your genomes
 
 Copy the short summary files from BUSCo run directories to another directory for getting the BUSCO plots
